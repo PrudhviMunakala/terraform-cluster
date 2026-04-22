@@ -6,10 +6,3 @@ data "aws_ssm_parameter" "mysql_sg_id" {
   name = "/${var.project}/${var.environment}/mysql_sg_id"
 }
 
-data "aws_ssm_parameter" "vpc-id" {
-  name = "/${var.project}/${var.environment}/vpc-id"
-}
-
-data "aws_ssm_parameter" "database_subnet_ids" {
-  name = "/${var.project}/${var.environment}/database_subnet_ids"
-}
