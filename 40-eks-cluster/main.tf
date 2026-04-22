@@ -25,10 +25,14 @@ module "eks" {
   vpc_id                   = local.vpc_id
   subnet_ids               = local.private_subnet_ids
   control_plane_subnet_ids = local.private_subnet_ids
+  
+  node_security_group_id = local.eks_worker_nodes_sg_id
+  security_group_id = local.eks_control_plane_sg_id
+
   create_security_group = false
   create_node_security_group = false
-  node_security_group_id = [local.eks_worker_nodes_sg_id]
-  security_group_id = local.eks_control_plane_sg_id
+
+
   iam_role_additional_policies = {
     amazonEBSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEBSCSIDriverPolicy"
     amazonEFSCSIDriverPolicy = "arn:aws:iam::aws:policy/service-role/AmazonEFSCSIDriverPolicy"
