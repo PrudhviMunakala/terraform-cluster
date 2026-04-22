@@ -7,13 +7,14 @@ terraform {
   }
 
   backend "s3" {
-    bucket  = "remote-state-aws-88s-dev" # Replace with your unique bucket name
+    bucket  = "terraform-state-ptdevops" # Replace with your unique bucket name
     key     = "terraform-eks-cluster"
     region  = "us-east-1"
     encrypt = true
     use_lockfile   = true
   }
 }
+
 
 provider "aws" {
   region = "us-east-1"

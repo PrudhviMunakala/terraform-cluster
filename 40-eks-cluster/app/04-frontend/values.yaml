@@ -1,0 +1,6 @@
+deployment:
+  replicas: "1"
+  imageName: "prudhviteja9692/frontend"
+  imageVersion: "1.2.0"
+ingress:
+  host: "roboshop-dev.ptdevops.online"
