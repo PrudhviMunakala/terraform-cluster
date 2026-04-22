@@ -44,8 +44,8 @@ resource "aws_security_group_rule" "mysql_bastion" {
 
 resource "aws_security_group_rule" "mysql_eks_worker_nodes" {
   type              = "ingress"
-  from_port         = 22
-  to_port           = 22
+  from_port         = 3306
+  to_port           = 3306
   protocol          = "tcp"
   source_security_group_id = local.eks_worker_nodes_sg_id
   security_group_id = local.mysql_sg_id
