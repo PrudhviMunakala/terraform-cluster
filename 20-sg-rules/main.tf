@@ -126,7 +126,7 @@ resource "aws_security_group_rule" "eks_nodes_vpc_cidr" {
   to_port           = 0
   protocol          = "-1"
   cidr_blocks = ["10.0.0.0/16"]
-  security_group_id =  local.eks_worker_nodes_sg_id
+  security_group_id = local.eks_worker_nodes_sg_id
 
 }
  
