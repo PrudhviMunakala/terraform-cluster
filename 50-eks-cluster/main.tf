@@ -1,20 +1,12 @@
 module "eks" {
-  source = "../../terraform-aws-eks"
-
-  project     = var.project
-  environment = var.environment
-
-  cluster_version            = var.eks_version
-  vpc_id                     = local.vpc_id
-  private_subnet_ids         = local.private_subnet_ids
-  cluster_security_group_ids = [local.eks_control_plane_sg_id]
-  node_security_group_ids    = [local.eks_worker_nodes_sg_id]
+  source          = "../terraform-aws-eks"
+  cluster_version = var.eks_version
 
   eks_managed_node_groups = {
     blue = {
-      create             = var.enable_blue
-      kubernetes_version = var.eks_nodegroup_blue_version
-      instance_types     = ["c3.large", "c4.large", "c5.large", "c5d.large", "c5n.large", "c5a.large"]
+      create         = var.enable_blue
+      # no kubernetes_version here — picks up cluster_version automatically
+      instance_types = ["m5.xlarge"]
       capacity_type  = "SPOT"
       min_size       = 2
       max_size       = 10
@@ -28,8 +20,8 @@ module "eks" {
 
     green = {
       create             = var.enable_green
-      kubernetes_version = var.eks_nodegroup_green_version
-      instance_types     = ["c3.large", "c4.large", "c5.large", "c5d.large", "c5n.large", "c5a.large"]
+      kubernetes_version = var.eks_nodegroup_green_version  # only matters during upgrade
+      instance_types     = ["m5.xlarge"]
       capacity_type      = "SPOT"
       min_size           = 2
       max_size           = 10
@@ -41,6 +33,4 @@ module "eks" {
       }
     }
   }
-
-  cluster_tags = local.common_tags
 }
