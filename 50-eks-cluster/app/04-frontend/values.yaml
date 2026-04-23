@@ -3,4 +3,4 @@ deployment:
   imageName: "prudhviteja9692/frontend"
   imageVersion: "1.2.0"
 ingress:
-  host: "*.ptdevops.online"
+  host: "roboshop-dev.ptdevops.online"
