@@ -1,6 +1,13 @@
 module "eks" {
-  source          = "../terraform-aws-eks"
-  cluster_version = var.eks_version
+  source          = "../../terraform-aws-eks"
+    project     = var.project
+    environment = var.environment
+
+  cluster_version            = var.eks_version
+  vpc_id                     = local.vpc_id
+  private_subnet_ids         = local.private_subnet_ids
+  cluster_security_group_ids = [local.eks_control_plane_sg_id]
+  node_security_group_ids    = [local.eks_worker_nodes_sg_id]
 
   eks_managed_node_groups = {
     blue = {

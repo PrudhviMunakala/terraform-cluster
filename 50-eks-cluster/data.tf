@@ -1,9 +1,9 @@
 data "aws_ssm_parameter" "vpc_id" {
-    name = "/${var.project}/${var.environment}/vpc_id"
+    name = "/${var.project}/${var.environment}/vpc-id"
 }
 
 data "aws_ssm_parameter" "private_subnet_ids" {
-    name = "/${var.project}/${var.environment}/private_subnet_ids"
+    name = "/${var.project}/${var.environment}/private-subnet-ids"
 }
 
 data "aws_ssm_parameter" "eks_worker_nodes_sg_id" {
