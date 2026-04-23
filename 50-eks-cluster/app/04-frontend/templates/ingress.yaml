@@ -9,7 +9,7 @@ metadata:
     component: frontend
   annotations:
     alb.ingress.kubernetes.io/listen-ports: '[{"HTTPS": 443}]'
-    alb.ingress.kubernetes.io/certificate-arn: 'arn:aws:acm:us-east-1:160885265516:certificate/b6983d9a-848d-4898-8335-81c74db10bc3'
+    alb.ingress.kubernetes.io/certificate-arn: "arn:aws:acm:us-east-1:534409839269:certificate/dd8ee9af-fc98-4fcb-8c81-9472850c96a6"
     alb.ingress.kubernetes.io/scheme: internet-facing
     alb.ingress.kubernetes.io/tags: Environment=dev,Project=roboshop
     alb.ingress.kubernetes.io/target-type: ip
@@ -17,13 +17,13 @@ metadata:
 spec:
   ingressClassName: alb
   rules:
-  - host: {{ .Values.ingress.host }}
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: frontend
-            port:
-              number: 80
+    - host: { { .Values.ingress.host } }
+      http:
+        paths:
+          - pathType: Prefix
+            path: "/"
+            backend:
+              service:
+                name: frontend
+                port:
+                  number: 80
